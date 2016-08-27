@@ -1,0 +1,19 @@
+{
+  "name": "speech_processor",
+  "version": "0.0.1",
+  "description": "process speech commands and perform actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "speech",
+    "commands",
+    "processor",
+    "command",
+    "spoken",
+    "text"
+  ],
+  "author": "Michael Colon",
+  "license": "ISC"
+}
