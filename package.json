@@ -4,7 +4,7 @@
   "description": "process speech commands and perform actions",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha test.js"
   },
   "keywords": [
     "speech",
@@ -15,5 +15,9 @@
     "text"
   ],
   "author": "Michael Colon",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "sentiment": "^2.0.0"
+  }
 }

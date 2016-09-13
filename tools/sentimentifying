@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+/*
+  @author: Michael Colon
+  @clipboard on mac: pbpaste | ./sentimentifying
+  @clipboard2 on mac: cat example.txt | pbcopy; pbpaste | ./sentimentifying
+*/
+
+var program = require('commander'),
+    sentiment = require('sentiment'),
+    comparative = 0,
+    parseit = 0;
+
+program
+  .version('1.0.0')
+  .option('-s, --sentence', 'Parse on sentence. One space by default')
+  .option('-c, --comparative', 'Show comparative score.')
+  .parse(process.argv);
+
+function run(data) {
+  var sentences=[], formatted = '';
+  if ( parseit && parseit===1) {
+    sentences = data.split(/[.!?]/);
+  } else {
+    sentences = [data];
+  }
+  sentences.forEach(function(sentence) {
+    if (sentence) {
+      var score = sentiment(sentence);
+      if (score !== undefined) {
+        // console.log(score);
+        if (comparative) {
+          sentence += ' ['+ parseFloat(score['score']).toFixed(0) + ',' + parseFloat(score['comparative']).toFixed(2)+']';
+        } else {
+          sentence += ' [' + parseFloat(score['score']).toFixed(0) +']';
+        }
+        if (sentence.indexOf(' ') == 0) sentence.replace(' ','');
+        formatted += sentence;
+      }
+    }
+  });
+ return formatted.replace('#linebreak', '\n');
+}
+if ( program.sentence) {
+  parseit = 1;
+}
+if (program.comparative) {
+  comparative = 1;
+}
+if (program.list) {
+  list = '\n';
+}
+
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', function(data) {
+  process.stdout.write(run(data));
+});
