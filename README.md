@@ -1,5 +1,11 @@
-## Speech Processor Framework
+# Speech Processor Framework
+Nothing yet...
 
+## Tools
+Some tools associate with speech processing.
+
+
+### Command line sentiment analysis through unix pipes.
 1. Parse Whole Text
 ```
 cat tools/example.txt | ./sentimentifying
